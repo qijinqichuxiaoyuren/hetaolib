@@ -2,11 +2,7 @@ import time
 import threading
 import sys
 import traceback
-from mpl_toolkits.mplot3d import Axes3D
-from matplotlib import cm
-from matplotlib.ticker import LinearLocator, FormatStrFormatter
-import matplotlib.pyplot as plt
-import numpy as np
+import random
 
 
 class TimeOutError(Exception):
@@ -27,8 +23,11 @@ class Dispacher(threading.Thread):
     def run(self):
         try:
             a = self.args
-            if type(a) == tuple:
-                l = len(a)
+            if type(a) == tuple or a == None:
+                if a == None:
+                    l = 0
+                else:
+                    l = len(a)
                 if l == 0:
                     self.result = self.fun()
                 elif l == 1:
@@ -73,6 +72,11 @@ def tryUserFunction(uf, timeout, args):
 
 
 def drawfigure(rate, grade, title):
+    from mpl_toolkits.mplot3d import Axes3D
+    from matplotlib import cm
+    from matplotlib.ticker import LinearLocator, FormatStrFormatter
+    import matplotlib.pyplot as plt
+    import numpy as np
     grade = np.abs(grade)
     if rate < 0.1:
         rate = 0.1
@@ -181,7 +185,7 @@ class Demon_attack(object):
                     print("试试找到错误原因吧")
                 return
             if not ans:
-                print('勇者没有想到魔王会从[%s] 发起攻击, 被击倒了。 勇者事后回想起来，觉得可能躲向[%s]比较好' % (cases[i], anss[i]))
+                print('勇者没有想到魔王会从[%s] 发起攻击, 被击倒了。 勇者事后回想起来，觉得可能躲向[%s]比较好。用return告诉勇者应该躲向哪边吧' % (cases[i], anss[i]))
                 return
             print('勇者做出了回应，躲向了[%s]' % ans)
             time.sleep(0.5)
@@ -206,7 +210,7 @@ class Help_grandma_Lee_2(object):
         anss = self.anss
         timeOut = self.timeOut
         for i in range(len(cases)):
-            print('李奶奶拿起了[%s]' % cases[i])
+            print('李奶奶把[%s]传给了你' % cases[i])
             time.sleep(0.5)
             ans = tryUserFunction(uf, timeOut, cases[i])
             if isinstance(ans, Exception):
@@ -216,14 +220,60 @@ class Help_grandma_Lee_2(object):
                     print("试试找到错误原因吧")
                 return
             if not ans:
-                print('你没有想好[%s]应该转化成什么, 李奶奶不太开心。事后回想起来，觉得应该是[%s]' % (cases[i], anss[i]))
+                print('你好像没有return什么数据, 李奶奶等了很久')
                 return
-            print('你把他转化成了[%s]' % ans)
+            print('你把[%s]返回给了李奶奶' % ans)
             time.sleep(0.5)
             print('==================================')
             time.sleep(0.5)
             if ans != anss[i]:
-                  print('很遗憾，数据转化得不对，李奶奶不太开心。事后回想起来，觉得应该是[%s]才对' % anss[i])
+                  print('很遗憾，数据转化得不对。事后回想起来，觉得应该是[%s]才对' % anss[i])
                   return 
         print('你帮助李奶奶转化好了数据，李奶奶奖励了你一瓶汽水')
         time.sleep(1)
+
+#4魔王又来偷袭核桃村啦！快帮助勇者躲开魔王的攻击
+#学会使用input()语句, 并开始接触随机数和二分法思维方式，理解编程效率的重要性
+class Demon_attack_random(object):
+    timeOut = 10
+    
+    def __init__(self, uf):
+        timeOut = self.timeOut
+        l = 1
+        h = 1000
+        hp = 13
+        r = random.randint(1,1000)
+        print('魔王的弱点就在他身上的某个地方，虽然他有[%d]米高，但勇者相信自己能找到魔王的弱点' % h)
+        print('勇者应该攻击魔王的什么位置呢？')
+        while True:
+            time.sleep(0.5)
+            hp -= 1
+            print('魔王发动了攻击，勇者 HP -= 1 ，还剩[%d]点了' % hp)
+            if hp <= 0:
+                print('很遗憾，勇者被击倒了。可恶， 需要更快打倒魔王才行')
+                return
+            ans = tryUserFunction(uf, timeOut, None)
+            if isinstance(ans, Exception):
+                if isinstance(ans, TimeOutError):
+                    print("勇者攻击地太慢了，还没出手就被魔王识破了")
+                    continue
+                else:
+                    print("试试找到错误原因吧")
+                    return
+            if not ans:
+                print('勇者没有收到return的数据, 不知道攻击哪里，快把魔王的弱点位置return给勇者吧')
+                return
+            if type(ans) != int:
+                print('勇者需要一个数字才行，用整数告诉勇者该攻击哪里')
+                return
+            print('勇者砍向了魔王[%d]米高的位置' % ans)
+            time.sleep(0.5)
+            if ans == r:
+                print('砍中了！看来这里就是魔王的弱点，魔王哀嚎着逃走了')
+                return
+            if ans < r:
+                print('魔王的手挡着更[高]的地方，看来弱点在更[高]的位置')
+            if ans > r:
+                print('魔王的手挡着更[低]的地方，看来弱点在更[低]的位置')
+            time.sleep(0.5)
+            print('==================================')
