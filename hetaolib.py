@@ -149,7 +149,7 @@ class Help_grandma_Lee(object):
                 else:
                     print("试试找到错误原因吧")
                 return
-            if not ans:
+            if ans == None:
                 print('李奶奶在等待你把数据的类型返回(retuen)给她, 但是没有等到。快问问老师return的用法吧')
                 return
             print('你觉得这是一个[%s]，把[%s]返回给了李奶奶' % (ans, ans))
@@ -184,8 +184,8 @@ class Demon_attack(object):
                 else:
                     print("试试找到错误原因吧")
                 return
-            if not ans:
-                print('勇者没有想到魔王会从[%s] 发起攻击, 被击倒了。 勇者事后回想起来，觉得可能躲向[%s]比较好。用return告诉勇者应该躲向哪边吧' % (cases[i], anss[i]))
+            if ans == None:
+                print('勇者没有想到魔王会从[%s] 发起攻击，没有做出反应, 被击倒了。 勇者事后回想起来，觉得可能躲向[%s]比较好。用return告诉勇者应该躲向哪边吧' % (cases[i], anss[i]))
                 return
             print('勇者做出了回应，躲向了[%s]' % ans)
             time.sleep(0.5)
@@ -219,7 +219,7 @@ class Help_grandma_Lee_2(object):
                 else:
                     print("试试找到错误原因吧")
                 return
-            if not ans:
+            if ans == None:
                 print('你好像没有return什么数据, 李奶奶等了很久')
                 return
             print('你把[%s]返回给了李奶奶' % ans)
@@ -235,13 +235,13 @@ class Help_grandma_Lee_2(object):
 #4魔王又来偷袭核桃村啦！快帮助勇者躲开魔王的攻击
 #学会使用input()语句, 并开始接触随机数和二分法思维方式，理解编程效率的重要性
 class Demon_attack_random(object):
-    timeOut = 10
+    timeOut = 20
     
     def __init__(self, uf):
         timeOut = self.timeOut
         l = 1
         h = 1000
-        hp = 13
+        hp = 16
         r = random.randint(1,1000)
         print('魔王的弱点就在他身上的某个地方，虽然他有[%d]米高，但勇者相信自己能找到魔王的弱点' % h)
         print('勇者应该攻击魔王的什么位置呢？')
@@ -260,7 +260,7 @@ class Demon_attack_random(object):
                 else:
                     print("试试找到错误原因吧")
                     return
-            if not ans:
+            if ans == None:
                 print('勇者没有收到return的数据, 不知道攻击哪里，快把魔王的弱点位置return给勇者吧')
                 return
             if type(ans) != int:
