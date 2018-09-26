@@ -3,7 +3,7 @@ from hetaolib import *
 
 #魔王又来了！魔王会攻击勇者，快用return告诉勇者他应该躲向哪个高度吧
 def attack_demon():
-    #↓type your code here
+    #↓write your code here
 
 
 
