@@ -277,3 +277,74 @@ class Demon_attack_random(object):
                 print('魔王的手挡着更[低]的地方，看来弱点在更[低]的位置')
             time.sleep(0.5)
             print('==================================')
+
+#狩猎绿色史莱姆1, 狩猎绿色史莱姆的技巧就是打3只中最高的那一只
+#练习使用逻辑判断, 能在3个数字中找到最大的数字
+class Hunt_slime_green(object):
+    cases = [(4, 6, 8), (12, 7, 1), (7, 4, 9), (5, 2, 4), (4, 6, 3), (4, 10, 8)]
+    anss = [8, 12, 9, 5, 6, 10]
+    timeOut = 2
+    
+    def __init__(self, uf):
+        cases = self.cases
+        anss = self.anss
+        timeOut = self.timeOut
+        for i in range(len(cases)):
+            print('史莱姆出现了, 他们的身高是[%s]' % str(cases[i]))
+            time.sleep(0.5)
+            ans = tryUserFunction(uf, timeOut, cases[i])
+            if isinstance(ans, Exception):
+                if isinstance(ans, TimeOutError):
+                    print("你的攻击太慢了，被击倒了")
+                else:
+                    print("试试找到错误原因吧")
+                return
+            if ans == None:
+                print('没有返回')
+                return
+            print('你决定攻击身高是[%s]的那只' % ans)
+            time.sleep(0.5)
+            print('==================================')
+            time.sleep(0.5)
+            if ans != anss[i]:
+                  print('真可惜, 这不是最高的那只, 史莱姆融化了你的剑, 可能攻击[%s]那只比较好' % anss[i])
+                  return
+            print('很好, 史莱姆被击倒了')
+        print('你打倒了的所有史莱姆, 开心地拿着战利品回家了')
+        time.sleep(1)
+
+
+#狩猎红色史莱姆1, 狩猎绿色史莱姆的技巧就是打3只中第二高的那一只
+#练习使用逻辑判断, 能在3个数字中找到第二大的数字
+class Hunt_slime_red(object):
+    cases = [(4, 6, 8), (12, 7, 1), (7, 4, 9), (5, 2, 4), (4, 6, 3), (4, 10, 8)]
+    anss = [6, 7, 7, 4, 4, 8]
+    timeOut = 2
+    
+    def __init__(self, uf):
+        cases = self.cases
+        anss = self.anss
+        timeOut = self.timeOut
+        for i in range(len(cases)):
+            print('史莱姆出现了, 他们的身高是[%s]' % str(cases[i]))
+            time.sleep(0.5)
+            ans = tryUserFunction(uf, timeOut, cases[i])
+            if isinstance(ans, Exception):
+                if isinstance(ans, TimeOutError):
+                    print("你的攻击太慢了，被击倒了")
+                else:
+                    print("试试找到错误原因吧")
+                return
+            if ans == None:
+                print('没有返回')
+                return
+            print('你决定攻击身高是[%s]的那只' % ans)
+            time.sleep(0.5)
+            print('==================================')
+            time.sleep(0.5)
+            if ans != anss[i]:
+                  print('真可惜, 这不是第二高的那只, 史莱姆融化了你的剑, 可能攻击[%s]那只比较好' % anss[i])
+                  return
+            print('很好, 史莱姆被击倒了')
+        print('你打倒了的所有史莱姆, 开心地拿着战利品回家了')
+        time.sleep(1)
