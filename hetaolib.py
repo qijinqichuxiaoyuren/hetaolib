@@ -300,7 +300,7 @@ class Hunt_slime_green(object):
                     print("试试找到错误原因吧")
                 return
             if ans == None:
-                print('没有返回')
+                print('你并没有返回一个史莱姆的身高, 要用return命令找到你应该攻击的史莱姆哦')
                 return
             print('你决定攻击身高是[%s]的那只' % ans)
             time.sleep(0.5)
@@ -308,8 +308,7 @@ class Hunt_slime_green(object):
             time.sleep(0.5)
             if ans != anss[i]:
                   print('真可惜, 这不是最高的那只, 史莱姆融化了你的剑, 可能攻击[%s]那只比较好' % anss[i])
-                  return
-            print('很好, 史莱姆被击倒了')
+                  return 
         print('你打倒了的所有史莱姆, 开心地拿着战利品回家了')
         time.sleep(1)
 
@@ -336,7 +335,7 @@ class Hunt_slime_red(object):
                     print("试试找到错误原因吧")
                 return
             if ans == None:
-                print('没有返回')
+                print('你并没有返回一个史莱姆的身高, 要用return命令找到你应该攻击的史莱姆哦')
                 return
             print('你决定攻击身高是[%s]的那只' % ans)
             time.sleep(0.5)
@@ -344,7 +343,6 @@ class Hunt_slime_red(object):
             time.sleep(0.5)
             if ans != anss[i]:
                   print('真可惜, 这不是第二高的那只, 史莱姆融化了你的剑, 可能攻击[%s]那只比较好' % anss[i])
-                  return
-            print('很好, 史莱姆被击倒了')
+                  return 
         print('你打倒了的所有史莱姆, 开心地拿着战利品回家了')
         time.sleep(1)
