@@ -58,7 +58,10 @@ class Dispacher(threading.Thread):
         print(text)
         print("它在第 %d 行, 函数 %s 中" % (lineNo, function))
         print("错误信息是:")
+        e = str(e)
         print(e)
+        if 'invalid literal for int() with base 10' in e:
+            print('这句话是不是不能转换成整数呢?')
         print("*" * 40)
 
 def tryUserFunction(uf, timeout, args):
@@ -185,7 +188,10 @@ class Demon_attack(object):
                     print("试试找到错误原因吧")
                 return
             if ans == None:
-                print('勇者没有想到魔王会从[%s] 发起攻击，没有做出反应, 被击倒了。 勇者事后回想起来，觉得可能躲向[%s]比较好。用return告诉勇者应该躲向哪边吧' % (cases[i], anss[i]))
+                if i == 0:
+                    print('勇者没有接到你的消息, 快用return告诉勇者应该躲向哪边吧')
+                else:
+                    print('勇者没有想到魔王会从[%s] 发起攻击，没有做出反应, 被击倒了。 勇者事后回想起来，觉得可能躲向[%s]比较好' % (cases[i], anss[i]))
                 return
             print('勇者做出了回应，躲向了[%s]' % ans)
             time.sleep(0.5)
@@ -241,7 +247,8 @@ class Demon_attack_random(object):
         timeOut = self.timeOut
         l = 1
         h = 1000
-        hp = 16
+        base_hp = 13
+        hp = base_hp
         r = random.randint(1,1000)
         print('魔王的弱点就在他身上的某个地方，虽然他有[%d]米高，但勇者相信自己能找到魔王的弱点' % h)
         print('勇者应该攻击魔王的什么位置呢？')
@@ -263,8 +270,11 @@ class Demon_attack_random(object):
             if ans == None:
                 print('勇者没有收到return的数据, 不知道攻击哪里，快把魔王的弱点位置return给勇者吧')
                 return
-            if type(ans) != int:
-                print('勇者需要一个数字才行，用整数告诉勇者该攻击哪里')
+            if type(ans) == str:
+                print('勇者需要一个整数才行，要用整数(int)告诉勇者该攻击哪里, 而不是一个字符串(str)')
+                return
+            elif type(ans) != int:
+                print('勇者需要一个整数才行，要用整数告诉勇者该攻击哪里')
                 return
             print('勇者砍向了魔王[%d]米高的位置' % ans)
             time.sleep(0.5)
@@ -275,6 +285,8 @@ class Demon_attack_random(object):
                 print('魔王的手挡着更[高]的地方，看来弱点在更[高]的位置')
             if ans > r:
                 print('魔王的手挡着更[低]的地方，看来弱点在更[低]的位置')
+            if hp >= base_hp - 2 and ans < 100:
+                print('要注意, 魔王有[%d]米高哦' % h)
             time.sleep(0.5)
             print('==================================')
 
@@ -313,7 +325,7 @@ class Hunt_slime_green(object):
         time.sleep(1)
 
 
-#狩猎红色史莱姆1, 狩猎绿色史莱姆的技巧就是打3只中第二高的那一只
+#狩猎红色史莱姆1, 狩猎红色史莱姆的技巧就是打3只中第二高的那一只
 #练习使用逻辑判断, 能在3个数字中找到第二大的数字
 class Hunt_slime_red(object):
     cases = [(4, 6, 8), (12, 7, 1), (7, 4, 9), (5, 2, 4), (4, 6, 3), (4, 10, 8)]
