@@ -358,3 +358,41 @@ class Hunt_slime_red(object):
                   return 
         print('你打倒了的所有史莱姆, 开心地拿着战利品回家了')
         time.sleep(1)
+
+
+#整除与取余
+#威尔逊博士遇到了一个问题，他想找出一个整数的十位数字是什么，你能帮助他吗？
+class Help_doctor_W(object):
+
+    cases = [23,14,45,58,60,540]
+    anss = [2, 1, 4, 5, 6, 4]
+    timeOut = 2
+
+    def __init__(self, uf):
+        cases = self.cases
+        anss = self.anss
+        timeOut = self.timeOut
+        for i in range(len(cases)):
+            print('威尔逊博士传来了[%d]希望你找到它的十位数字' % cases[i])
+            time.sleep(0.5)
+            ans = tryUserFunction(uf, timeOut, cases[i])
+            if isinstance(ans, Exception):
+                if isinstance(ans, TimeOutError):
+                    print("哪里卡住了？")
+                else:
+                    print("试试找到错误原因吧")
+                return
+            if not ans:
+                print('你没有想好[%s]十位数是什么,应该用取余,整除运算得出，是[%s]' % (cases[i], anss[i]))
+                return
+            print('你返回了[%s]' % ans)
+            time.sleep(0.5)
+            print('==================================')
+            time.sleep(0.5)
+            if ans != anss[i]:
+                print('很遗憾，计算出现了错误，威尔逊博士不太开心。事后回想起来，觉得应该是[%s]才对。' % anss[i])
+                if i == 5:
+                    print("啊！没想到居然还有三位数，还差一步马上就成功了！")
+                return
+        print('你帮助了威尔逊博士，威尔逊博士认为你学习python非常有天赋')
+        time.sleep(1)
