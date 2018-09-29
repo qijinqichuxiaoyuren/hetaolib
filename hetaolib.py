@@ -457,19 +457,8 @@ class ProtectWalnutVillage01(object):
             else:
                 print('平均战斗力情报有误, 万分危急, 请立刻重新出发!')
         except:
-            # print('出错了..........')
             exc_info = sys.exc_info()
-            # for i in exc_info:
-            #     print(i, type(i))
             stack_summary = tb.extract_tb(exc_info[-1])
-            # print(type(stack_summary), type(stack_summary[0]), type(stack_summary[1]), type(stack_summary[2]))
-            # for fs in stack_summary:
-            #     print(fs.filename, fs.lineno, fs.name, fs.line, end=f'\n{"0":0<80}\n')
-            #     print(f'文件名: {fs.filename}')
-            #     print(f'行号: {fs.lineno}')
-            #     print(f'名称: {fs.name}')
-            #     print(f'行: {fs.line}')
-            #     print('0'*80)
             frame_summary = stack_summary[-1]
             print(f'错误发生在文件: {frame_summary.filename}\n行数: {frame_summary.lineno}\n'
                   f'函数名: {frame_summary.name}\n错误内容: {frame_summary.line}')
