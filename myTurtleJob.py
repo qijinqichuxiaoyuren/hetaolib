@@ -6,4 +6,6 @@ colors = ["red", "yellow", "blue", "green"]
 for x in range(200):
     Tina.pencolor( colors[ x % 4] )
     Tina.forward(2 * x)
-    Tina.left(91)
+    Tina.left(90)
+
+
