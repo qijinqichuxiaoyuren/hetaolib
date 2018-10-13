@@ -6,7 +6,7 @@ import random
 
 import numpy as np
 import traceback as tb
-
+import re
 
 class TimeOutError(Exception):
     def __init__(self, *args):
@@ -458,10 +458,24 @@ class ProtectWalnutVillage01(object):
                 print('平均战斗力情报有误, 万分危急, 请立刻重新出发!')
         except:
             exc_info = sys.exc_info()
+            for i in exc_info:
+                print(f'{i}\t\t{type(i)}')
             stack_summary = tb.extract_tb(exc_info[-1])
             frame_summary = stack_summary[-1]
             print(f'错误发生在文件: {frame_summary.filename}\n行数: {frame_summary.lineno}\n'
                   f'函数名: {frame_summary.name}\n错误内容: {frame_summary.line}')
+
+            # -------------------2018年9月30日12:07:15-------------------
+            err_dic = {'ZeroDivisionError': '除数不能为0', 'NameError': '变量未定义'}
+            match_obj1 = re.search("<class '(\w+)'>", f'{exc_info[-3]}')
+            match_obj2 = re.search("name '(\w+)' is not defined", f'{exc_info[-2]}')
+
+            if match_obj2 is not None:
+                print(f'小伙子我来告诉你哪错了:\t 变量 {match_obj2.group(1)} 没有定义')
+            else:
+                if match_obj1 is not None:
+                    print('小伙子我来告诉你哪错了:', err_dic[match_obj1.group(1)])
+            # -------------------2018年9月30日12:07:15-------------------
 
     def avg_info(self):
         ret_avg = self.avg_func(*self.case, len(self.case))

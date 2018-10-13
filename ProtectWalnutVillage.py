@@ -14,7 +14,9 @@ from hetaolib import ProtectWalnutVillage01
 def avg_info(num1, num2, num3, n):  # 收集平均战斗力信息
     pass
     # ↓ write your code below
-
+    # m = m + 1
+    print(m)
+    # 3 / 0
 
 def max_info(num1, num2, num3):    # 收集最强战斗力信息
     pass
